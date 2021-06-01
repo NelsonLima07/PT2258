@@ -1,0 +1,17 @@
+/*
+ * J3_SH1106.h
+ *
+ *  Created on: May 31, 2021
+ *      Author: Nelson Lima
+ */
+
+
+#ifndef INC_J3_PT2258_H_
+#define INC_J3_PT2258_H_
+
+typedef struct TPT2258;
+
+
+
+
+#endif /* INC_J3_PT2258_H_ */

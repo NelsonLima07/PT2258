@@ -1,0 +1,19 @@
+/*
+ * J3_SH1106.h
+ *
+ *  Created on: May 31, 2021
+ *      Author: Nelson Lima
+ */
+
+#include "stdlib.h"
+
+#include "usr/J3_PT2258.h"
+
+
+struct TPT2258{
+  I2C_HandleTypeDef* i2c;
+  uint8_t address;
+};
+
+
+typedef struct TPT2258 TPT2258;

@@ -1,0 +1,30 @@
+/*
+ * J3_SH1106.h
+ *
+ *  Created on: May 31, 2021
+ *      Author: Nelson Lima
+ */
+
+
+#ifndef INC_J3_PT2258_H_
+#define INC_J3_PT2258_H_
+
+#include "i2c.h"
+
+/* Endereco
+ * CODE1 CODE2  Endereco
+ *   1     1      0x8C
+ *   1     0      0x88
+ *   0     1      0x84
+ *   0     0      0x80
+ */
+
+
+typedef struct TPT2258;
+
+TPT2258* J3_PT2258_new(I2C_HandleTypeDef* _i2c, uint8_t _i2c_address); /* Retorna um ponteiro para o CI PT2258 */
+
+void J3_PT2258_setVolumeMaster(TPT2258* _pt2258, uint8_t _vol);
+void J3_PT2258_setVolumeCanal(TPT2258* _pt2258, uint8_t _canal, uint8_t _vol);
+
+#endif /* INC_J3_PT2258_H_ */

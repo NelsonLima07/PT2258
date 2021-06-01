@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;PT2258/Core/Src/usr/J3_PT2258&apos; to &apos;J3_PT2258.c&apos;" description="Rename resource &apos;J3_PT2258&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/usr/J3_PT2258" name="J3_PT2258.c" stamp="1622439280036" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;PT2258/Core/Inc/usr/J3_PT2258&apos; to &apos;J3_PT2258.h&apos;" description="Rename resource &apos;J3_PT2258&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Inc/usr/J3_PT2258" name="J3_PT2258.h" stamp="1622439288768" updateReferences="true"/>
+</session>
