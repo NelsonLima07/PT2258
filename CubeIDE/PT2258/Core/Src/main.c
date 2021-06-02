@@ -24,7 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "usr/J3_PT2258.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -74,6 +74,8 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+  TPT2258* controleAudio;
+  uint8_t ch1_vol = 40;
 
   /* USER CODE END Init */
 
@@ -88,6 +90,13 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
+  HAL_Delay(300);
+
+  controleAudio = J3_PT2258_new(&hi2c1, 0x88);
+  J3_PT2258_reset(controleAudio);
+  J3_PT2258_setMuteOff(controleAudio);
+	J3_PT2258_setVolumeCanal(controleAudio, 1, ch1_vol);
+	J3_PT2258_setVolumeCanal(controleAudio, 0, ch1_vol);
 
   /* USER CODE END 2 */
 
@@ -98,6 +107,52 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+  	HAL_GPIO_TogglePin(LED_PLACA_GPIO_Port, LED_PLACA_Pin);
+  	HAL_Delay(250);
+
+  	if (HAL_GPIO_ReadPin(BTN_VD_GPIO_Port, BTN_VD_Pin) == GPIO_PIN_RESET){
+  		HAL_Delay(100);
+  		if (HAL_GPIO_ReadPin(BTN_VD_GPIO_Port, BTN_VD_Pin) == GPIO_PIN_RESET){
+  			if(ch1_vol > 0){
+  				ch1_vol--;
+  				J3_PT2258_setVolumeCanal(controleAudio, 1, ch1_vol);
+  				J3_PT2258_setVolumeCanal(controleAudio, 0, ch1_vol);
+
+  				HAL_GPIO_TogglePin(LED_PLACA_GPIO_Port, LED_PLACA_Pin);
+  		  	HAL_Delay(50);
+  		  	HAL_GPIO_TogglePin(LED_PLACA_GPIO_Port, LED_PLACA_Pin);
+  		  	HAL_Delay(50);
+  		  	HAL_GPIO_TogglePin(LED_PLACA_GPIO_Port, LED_PLACA_Pin);
+  		  	HAL_Delay(50);
+  		  	HAL_GPIO_TogglePin(LED_PLACA_GPIO_Port, LED_PLACA_Pin);
+  		  	HAL_Delay(50);
+  			}
+  		}
+  	}
+
+  	if (HAL_GPIO_ReadPin(BTN_VU_GPIO_Port, BTN_VU_Pin) == GPIO_PIN_RESET){
+  		HAL_Delay(100);
+  		if (HAL_GPIO_ReadPin(BTN_VU_GPIO_Port, BTN_VU_Pin) == GPIO_PIN_RESET){
+  			if(ch1_vol < 79 ){
+  				ch1_vol++;
+  				J3_PT2258_setVolumeCanal(controleAudio, 1, ch1_vol);
+  				J3_PT2258_setVolumeCanal(controleAudio, 0, ch1_vol);
+
+  				HAL_GPIO_TogglePin(LED_PLACA_GPIO_Port, LED_PLACA_Pin);
+  		  	HAL_Delay(50);
+  		  	HAL_GPIO_TogglePin(LED_PLACA_GPIO_Port, LED_PLACA_Pin);
+  		  	HAL_Delay(50);
+  		  	HAL_GPIO_TogglePin(LED_PLACA_GPIO_Port, LED_PLACA_Pin);
+  		  	HAL_Delay(50);
+  		  	HAL_GPIO_TogglePin(LED_PLACA_GPIO_Port, LED_PLACA_Pin);
+  		  	HAL_Delay(50);
+
+  			}
+  		}
+  	}
+
+
+
   }
   /* USER CODE END 3 */
 }

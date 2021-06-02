@@ -60,6 +60,10 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define LED_PLACA_Pin GPIO_PIN_13
 #define LED_PLACA_GPIO_Port GPIOC
+#define BTN_VU_Pin GPIO_PIN_14
+#define BTN_VU_GPIO_Port GPIOC
+#define BTN_VD_Pin GPIO_PIN_15
+#define BTN_VD_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

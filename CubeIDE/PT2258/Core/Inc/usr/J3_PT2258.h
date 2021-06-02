@@ -44,7 +44,8 @@ TPT2258* J3_PT2258_new(I2C_HandleTypeDef* _i2c, uint8_t _i2c_address); /* Retorn
 
 /*_canal -> 1 a 6 ou 0 para Master */
 void J3_PT2258_setVolumeCanal(TPT2258* _pt2258, uint8_t _canal, uint8_t _vol);
-void J3_PT2258_SetMuteOn();
-void J3_PT2258_SetMuteOff();
+void J3_PT2258_setMuteOn(TPT2258* _pt2258);
+void J3_PT2258_setMuteOff(TPT2258* _pt2258);
+void J3_PT2258_reset(TPT2258* _pt2258);
 
 #endif /* INC_J3_PT2258_H_ */
