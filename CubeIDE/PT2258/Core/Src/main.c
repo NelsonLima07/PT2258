@@ -90,7 +90,7 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  HAL_Delay(300);
+  HAL_Delay(500);
 
   controleAudio = J3_PT2258_new(&hi2c1, 0x88);
   J3_PT2258_reset(controleAudio);
@@ -108,7 +108,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
   	HAL_GPIO_TogglePin(LED_PLACA_GPIO_Port, LED_PLACA_Pin);
-  	HAL_Delay(250);
+  	HAL_Delay(100);
 
   	if (HAL_GPIO_ReadPin(BTN_VD_GPIO_Port, BTN_VD_Pin) == GPIO_PIN_RESET){
   		HAL_Delay(100);
@@ -149,6 +149,10 @@ int main(void)
 
   			}
   		}
+  	}
+
+  	if ((HAL_GPIO_ReadPin(BTN_VU_GPIO_Port, BTN_VU_Pin) == GPIO_PIN_RESET) && (HAL_GPIO_ReadPin(BTN_VD_GPIO_Port, BTN_VD_Pin) == GPIO_PIN_RESET)){
+  		J3_PT2258_setMuteOn(controleAudio);
   	}
 
 
