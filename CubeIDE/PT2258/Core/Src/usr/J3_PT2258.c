@@ -22,9 +22,9 @@ typedef struct TPT2258 TPT2258;
 /* Canal 0 é o master */
 uint8_t aCanais[7] = {MASTER, CANAL1, CANAL2, CANAL3, CANAL4, CANAL5, CANAL6};
 
-//overload j3_PT2258_sendCmd;
 
 /* Enviar comando para o PT2258 */
+/*
 void j3_PT2258_sendCmd(TPT2258* _pt2258, uint8_t _b1, uint8_t _b2){
   if (_pt2258->i2c != NULL){
     HAL_StatusTypeDef ret;
@@ -39,16 +39,13 @@ void j3_PT2258_sendCmd(TPT2258* _pt2258, uint8_t _b1, uint8_t _b2){
     }
   }
 }
+*/
 
 /* Enviar comando para o PT2258 */
-void j3_PT2258_sendCmd2(TPT2258* _pt2258, uint8_t _buf[]){
+void j3_PT2258_sendCmd2(TPT2258* _pt2258, uint8_t _buf[], uint8_t _tambuf){
   if (_pt2258->i2c != NULL){
     HAL_StatusTypeDef ret;
-    //uint8_t buf[2];
-
-    //buf[0] = _b1;
-    //buf[1] = _b2;
-    ret = HAL_I2C_Master_Transmit(_pt2258->i2c, _pt2258->address, _buf, sizeof(_buf), HAL_MAX_DELAY);
+    ret = HAL_I2C_Master_Transmit(_pt2258->i2c, _pt2258->address, _buf, _tambuf, HAL_MAX_DELAY);
     if (ret == HAL_OK) {
     }
     else {
@@ -71,33 +68,33 @@ void J3_PT2258_setVolumeCanal(TPT2258* _pt2258, uint8_t _canal, uint8_t _vol){
 	if (_canal > 6){
 		return;
 	}
-	uint8_t auxU, auxD;
+	uint8_t auxBuf[2];
 
 	if (_vol > VOL_MAX)
 		_vol = VOL_MAX;
 
 
-	auxU = ( aCanais[_canal]  | (_vol % 10) ); // Byte da Unidade
-	auxD = ( (aCanais[_canal] - 0x10)  | (_vol / 10) ); // Byte da Dezeza
+	auxBuf[0] = ( aCanais[_canal]  | (_vol % 10) ); // Byte da Unidade
+	auxBuf[1] = ( (aCanais[_canal] - 0x10)  | (_vol / 10) ); // Byte da Dezeza
 
-	j3_PT2258_sendCmd(_pt2258, auxD, auxU);
+	j3_PT2258_sendCmd2(_pt2258, auxBuf, 2);
 }
 
 void J3_PT2258_setMuteOn(TPT2258* _pt2258){
 	uint8_t auxBuf[1] = {MUTE_ON};
 
-	j3_PT2258_sendCmd2(_pt2258, auxBuf);
+	j3_PT2258_sendCmd2(_pt2258, auxBuf, 1);
 }
 
 void J3_PT2258_setMuteOff(TPT2258* _pt2258){
 	uint8_t auxBuf[1] = {MUTE_OFF};
 
-	j3_PT2258_sendCmd2(_pt2258, auxBuf);
+	j3_PT2258_sendCmd2(_pt2258, auxBuf, 1);
 }
 
 void J3_PT2258_reset(TPT2258* _pt2258){
 	uint8_t auxBuf[1] = {CLEAR_RESET};
 
-	j3_PT2258_sendCmd2(_pt2258, auxBuf);
+	j3_PT2258_sendCmd2(_pt2258, auxBuf, 1);
 }
 
