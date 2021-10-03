@@ -1,3 +1,6 @@
-J3_PT2258.c:27:6:j3_PT2258_sendCmd	32	static
-J3_PT2258.c:43:10:J3_PT2258_new	24	static
-J3_PT2258.c:54:6:J3_PT2258_setVolumeCanal	24	static
+J3_PT2258.c:45:6:j3_PT2258_sendCmd2	40	static
+J3_PT2258.c:56:10:J3_PT2258_new	24	static
+J3_PT2258.c:67:6:J3_PT2258_setVolumeCanal	24	static
+J3_PT2258.c:83:6:J3_PT2258_setMuteOn	24	static
+J3_PT2258.c:89:6:J3_PT2258_setMuteOff	24	static
+J3_PT2258.c:95:6:J3_PT2258_reset	24	static
